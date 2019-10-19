@@ -1,0 +1,19 @@
+{
+	"checkpoint_name": 		"wavenet-ckpt",
+	"dir": {
+		"storage": "./storage",
+		"artifacts": "./artifacts"
+	},  
+	"jobs": {
+		"encode-interpolate": {
+			"batch_size": 				1,
+			"concurrent_jobs": 		1
+		},
+		"decode": {
+			"gpus": 							1,
+			"batch_size":   			1,
+			"sample_length": 			1,
+			"concurrent_jobs": 		4
+		}
+	}       
+}					

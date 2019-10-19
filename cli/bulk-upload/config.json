@@ -1,0 +1,33 @@
+{
+	"name": "demo_1",
+	"user": "steve_reid",
+	"resolution": 9,
+	"labels": {
+		"NW": ["strings"],
+		"NE": ["bells"],
+		"SW": ["synth"],
+		"SE": ["guitar"]
+	},
+	"dev": {
+		"api": {
+			"http": "http://",
+			"host": "0.0.0.0",
+			"port": ":4001"
+		},
+		"googleStorage": {
+			"bucket": "sound-gen-files-dev",
+			"uploadPath": "sounds"
+		}
+	},
+	"prod": {
+		"api": {
+			"http": "https://",
+			"host": "sound-gen.appspot.com",
+			"port": ""
+		},
+		"googleStorage": {
+			"bucket": "sound-gen-files-prod",
+			"uploadPath": "sounds"
+		}
+	}
+}

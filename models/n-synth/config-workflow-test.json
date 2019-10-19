@@ -1,0 +1,29 @@
+{
+	"checkpoint_name": 		"wavenet-ckpt",
+	"dir": {
+		"storage": "/storage",
+		"artifacts": "/artifacts"
+	},  
+	"jobs": {
+		"encode-interpolate": {
+			"batch_size": 				1,
+			"concurrent_jobs": 		1,
+			"project_id": 				"prqkn2gbv",
+      "container": 					"reidsteven75/sound-gen-n-synth-gpu:latest",
+			"machine_type": 			"P6000"
+		},
+		"decode": {
+			"gpus": 							1,
+			"batch_size":   			1,
+			"sample_length": 			1,
+			"concurrent_jobs": 		4,
+			"project_id": 				"prqkn2gbv",
+      "container": 					"reidsteven75/sound-gen-n-synth-cpu:latest",
+			"machine_type": 			"P6000"
+		}
+	},
+	"paperspace": {
+		"url": "https://api.paperspace.io",
+		"api_key": "25f8821c308a51e267d6765e88ce28"
+	}          
+}					
