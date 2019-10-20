@@ -1,0 +1,18 @@
+# common files
+.#*
+*.log
+.DS_Store
+
+# common directories
+**/node_modules/
+**/storage/
+**/artifacts/
+**/dataset/
+**/dataset-queue/
+
+# specific directories
+**/.ps_project/
+**/sounds/
+
+
+
