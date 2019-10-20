@@ -1,8 +1,0 @@
-{
-  "project": "n-synth",
-  "machineType": "GPU+",
-  "container": "reidsteven75/sound-gen-n-synth:latest",
-  "command": "cHl0aG9uIGpvYi5weQ==",
-  "workspace": "./jobs/encode-interpolate",
-  "lastJobId": "js258a171z0g3"
-}

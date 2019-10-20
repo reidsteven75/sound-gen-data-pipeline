@@ -1,8 +1,0 @@
-{
-  "project": "g-synth",
-  "machineType": "GPU+",
-  "container": "reidsteven75/sound-gen-g-synth:latest",
-  "command": "RU5WPSdwYXBlcnNwYWNlJyBweXRob24gZ2VuZXJhdGUucHk=",
-  "workspace": "./job",
-  "lastJobId": "js88icw8qrsgjp"
-}
