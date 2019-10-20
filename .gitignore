@@ -3,6 +3,9 @@
 *.log
 .DS_Store
 
+# files
+**/sounds/
+
 # common directories
 **/node_modules/
 **/storage/
