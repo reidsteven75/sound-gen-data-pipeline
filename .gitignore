@@ -1,6 +1,8 @@
 # common files
 .#*
 *.log
+*.wav
+*.mp3
 .DS_Store
 
 # files
