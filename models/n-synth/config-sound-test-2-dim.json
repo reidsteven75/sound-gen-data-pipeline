@@ -1,7 +1,7 @@
 {
 	"name": "test",
 	"user": "test_user",
-	"resolution": 2,
+	"resolution": 5,
 	"labels": {
 		"LEFT": ["bass"],
 		"RIGHT": ["keyboard"]

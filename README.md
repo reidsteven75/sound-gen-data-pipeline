@@ -1,7 +1,13 @@
 Dev
 ------
 ```
-$ docker-compose up --build generate
+$ docker-compose up --build generate-local-test
+```
+
+If error about no disk space run...
+
+```
+$ docker image prune
 ```
 
 Deploy

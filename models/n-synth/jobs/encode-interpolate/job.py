@@ -87,10 +87,79 @@ def compute_embeddings():
 	
 	assert num_input_files==num_output_files, '[compute_embeddings]: different quanity of files generated'
 
-def interpolate_embeddings():
+def interpolate_embeddings_2_dim():
 
-	print('-------------------------------')
-	print('START: interpolating embeddings')
+	print('---------------------------------------')
+	print('START: interpolating embeddings - 2 dim')
+
+	input_path = DIR_EMBEDDINGS
+	output_path = DIR_ARTIFACTS
+	create_dir(output_path)
+
+	grid_name = config_sound['name']
+	resolution = config_sound['resolution']
+	instrument_groups = [config_sound['labels']['LEFT'], config_sound['labels']['RIGHT']]
+	combinations = sorted(product(*instrument_groups))
+	xy_grid = make_grid(resolution)
+
+	print('combinations')
+	print(combinations)
+
+	print('grid')
+	print(xy_grid)
+
+	#	cache all embeddings
+	embeddings_lookup = {}
+
+	for filename in os.listdir(input_path):
+		if '.npy' in  filename:
+			#	cache by name of sound defined in initial file
+			parts = basename(filename).split('_')
+			reference = parts[0]
+			embeddings_lookup[reference] = np.load(input_path + '/' + filename)
+
+	print('embeddings')
+	print(embeddings_lookup)
+
+	def get_embedding(instrument):
+		return embeddings_lookup[instrument]
+
+	def parse_weight(weight):
+		return str(round(weight, 3))
+
+	done = set()
+	all_names = []
+	all_embeddings = []
+
+	for combination in tqdm(combinations):
+		print('combo')
+		print(combination[0])
+
+		embedding_left = get_embedding(combination[0])
+		embedding_right = get_embedding(combination[1])
+
+		for interpolation_step in range(resolution + 1):
+			weight_left = 1 - interpolation_step / resolution
+			weight_right = interpolation_step / resolution
+			print('weight')
+			print(weight_left, weight_right)
+			interpolated = embedding_left * weight_left + embedding_right * weight_right
+
+			name = 'LEFT_' +  parse_weight(weight_left) + '_RIGHT_' + parse_weight(weight_right)
+			np.save(output_path + '/' + name + '.npy', interpolated.astype(np.float32))
+
+	num_output_files = len(get_only_files(output_path))
+
+	print('RESULT: interpolating embeddings')
+	print('--------------------------------')
+	print('# interpolated embeddings generated: %s' %(num_output_files))
+	print(get_only_files(output_path))
+
+
+def interpolate_embeddings_4_dim():
+
+	print('---------------------------------------')
+	print('START: interpolating embeddings - 4 dim')
 
 	input_path = DIR_EMBEDDINGS
 	output_path = DIR_ARTIFACTS
@@ -151,7 +220,7 @@ if __name__ == '__main__':
 	
 	init()
 	compute_embeddings()
-	interpolate_embeddings()
+	interpolate_embeddings_2_dim()
 
 	print('===============================')
 	print('JOB:%s:COMPLETE' %(JOB_NAME))
