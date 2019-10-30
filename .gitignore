@@ -3,6 +3,7 @@
 *.log
 *.wav
 *.mp3
+*.zip
 .DS_Store
 
 # files
