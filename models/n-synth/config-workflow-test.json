@@ -1,8 +1,8 @@
 {
 	"checkpoint_name": 		"wavenet-ckpt",
 	"dir": {
-		"storage": "/storage",
-		"artifacts": "/artifacts"
+		"storage": "./storage",
+		"artifacts": "./artifacts"
 	},  
 	"jobs": {
 		"encode-interpolate": {

@@ -1,0 +1,9 @@
+{
+	"name": "test",
+	"user": "test_user",
+	"resolution": 2,
+	"labels": {
+		"LEFT": ["bass"],
+		"RIGHT": ["keyboard"]
+	}
+}

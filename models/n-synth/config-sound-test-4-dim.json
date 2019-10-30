@@ -1,4 +1,4 @@
-{
+	{
 	"name": "test",
 	"user": "test_user",
 	"resolution": 2,
@@ -8,4 +8,4 @@
 		"SW": ["keyboard"],
 		"SE": ["organ"]
 	}
-}					
+}				

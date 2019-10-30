@@ -38,7 +38,7 @@ services:
      - "${GENERATE_PORT}:${GENERATE_PORT}"
     command: sh -c "python generate.py"
   
-  generate-test:
+  generate-test-papersapce:
     env_file: .env
     build:
       context: ./models/n-synth
@@ -47,6 +47,23 @@ services:
         DATASET_TYPE: test
         COMPUTE_TYPE: gpu
         COMPUTE_ENVIRONMENT: paperspace
+    volumes:
+      - ./models/n-synth/artifacts:/code/artifacts
+    networks:
+      - sound_network
+    ports:
+     - "${GENERATE_PORT}:${GENERATE_PORT}"
+    command: sh -c "python generate.py"
+
+  generate-test-local:
+    env_file: .env
+    build:
+      context: ./models/n-synth
+      args: 
+        TENSORFLOW_IMAGE: tensorflow/tensorflow:1.13.1-py3
+        DATASET_TYPE: test
+        COMPUTE_TYPE: cpu
+        COMPUTE_ENVIRONMENT: local
     volumes:
       - ./models/n-synth/artifacts:/code/artifacts
     networks:

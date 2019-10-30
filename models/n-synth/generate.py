@@ -23,7 +23,7 @@ DATASET_TYPE = os.environ['DATASET_TYPE']
 
 if DATASET_TYPE == 'test':
   CONFIG_WORKFLOW_FILE = 'config-workflow-test.json'
-  CONFIG_SOUND_FILE = 'config-sound-test.json'
+  CONFIG_SOUND_FILE = 'config-sound-test-2-dim.json'
 else:
   CONFIG_WORKFLOW_FILE = 'config-workflow-%s.json' %(COMPUTE_ENVIRONMENT)
   CONFIG_SOUND_FILE = 'config-sound.json'

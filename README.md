@@ -1,5 +1,11 @@
-Deploy - Sound Generation
--------------------------
+Dev
+------
+```
+$ docker-compose up --build generate
+```
+
+Deploy
+------
 Deployed as a job that runs in Paperspace. Job runs in a configurable docker container and uses configurable AI model checkpoint(s) that has been upload as .zip file to Paperspace 'storage' (common persistant storage)
 
 1) Deploy Docker
