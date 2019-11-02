@@ -1,12 +1,12 @@
 {
-	"name": "demo_quality_2",
+	"name": "demo_quality",
 	"user": "steve_reid",
 	"resolution": 9,
 	"labels": {
-		"NW": ["organ"],
-		"NE": ["mallet"],
-		"SW": ["balafon"],
-		"SE": ["synth"]
+		"NW": ["strings"],
+		"NE": ["bells"],
+		"SW": ["synth"],
+		"SE": ["guitar"]
 	},
 	"dev": {
 		"api": {
