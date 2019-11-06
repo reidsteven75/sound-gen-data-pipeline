@@ -1,17 +1,49 @@
 Dev
-------
+---
+Use the test dataset for faster development iterations.
+The whole pipeline can be run either locally or in the cloud.
+
+
+Local CPU Generation
+---------------------
+Runs locally with machine CPU.
+Configure with 'config-workflow-local.json'.
+
+Input files = './models/n-synth/dataset'
 ```
-$ docker-compose up --build generate-local-test
+$ docker-compose up --build generate-local
 ```
 
-If error about no disk space run...
+Input files = './models/n-synth/dataset-test'
+```
+$ docker-compose up --build generate-test-local
+```
 
+Cloud GPU Generation
+--------------------
+Runs on Paperspace with configurable GPUs.
+Configure with 'config-workflow-paperspace.json'.
+
+Input files = './models/n-synth/dataset'
+```
+$ docker-compose up --build generate-paperspace
+```
+
+Input files = './models/n-synth/dataset-test'
+```
+$ docker-compose up --build generate-test-paperspace
+```
+
+Docker Errors
+-------------
+
+No space left on disk
 ```
 $ docker image prune
 ```
 
-Deploy
-------
+Docker Container
+-----------------
 Deployed as a job that runs in Paperspace. Job runs in a configurable docker container and uses configurable AI model checkpoint(s) that has been upload as .zip file to Paperspace 'storage' (common persistant storage)
 
 1) Deploy Docker
