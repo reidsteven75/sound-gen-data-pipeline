@@ -1,5 +1,5 @@
 # Overview
-A sound generation data pipeline can be run either locally or in the cloud.<br />
+A sound generation data pipeline that can be run either locally or in the cloud.<br />
 It can generate 2 or 4 dimension Sound Spaces with configurable resolution using 2 or 4 sounds input files<br />
 The whole pipeline is containerized in Docker and can be invoked with `docker-compose` commands below<br />
 The test dataset & docker-compose test commands are best for faster development iterations.
@@ -62,7 +62,7 @@ Right now all jobs use the same container
 $ ./models/nsynth/deploy-docker.sh
 ```
 
-##### Deploying updated model checkpoint(s)
+#### Deploying updated model checkpoint(s)
 Checkpoints are accessed through the Paperspace 'storage' directory, which can be accessed on Paperspace in the 'Notebooks' section under the container named 'COMMON STORAGE'. The 'storage' directory is common accross all jobs running on Paperspace.
 
 ## Troubleshooting
