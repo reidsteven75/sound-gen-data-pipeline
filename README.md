@@ -1,65 +1,74 @@
-Dev
----
-Use the test dataset for faster development iterations.
-The whole pipeline can be run either locally or in the cloud.
+# Overview
+The whole sound generation data pipeline can be run either locally or in the cloud.<br />
+It is containerized in Docker and can be invoked with `docker-compose` commands below.<br />
+The test dataset & docker-compose test commands are best for faster development iterations.
 
+# Datasets
 
-Local CPU Generation
----------------------
-Runs locally with machine CPU.
-Configure with 'config-workflow-local.json'.
+#### Dev/Test 
+`./models/n-synth/dataset-test`
 
-Input files = './models/n-synth/dataset'
-```
-$ docker-compose up --build generate-local
-```
+#### Actual Generation Input
+`./models/n-synth/dataset`
 
-Input files = './models/n-synth/dataset-test'
+# Sound Generation
+
+Utilizes [Magenta's Nsynth](https://github.com/tensorflow/magenta/tree/master/magenta/models/nsynth) 
+model based on Wavenet trained on the following [sound dataset](https://magenta.tensorflow.org/datasets/nsynth) <br />
+Model can be retrained on different sounds.
+
+## Local CPU
+Runs locally on machine CPU configured with `config-workflow-local.json`
+
+#### Dev/Test
 ```
 $ docker-compose up --build generate-test-local
 ```
 
-Cloud GPU Generation
---------------------
-Runs on Paperspace with configurable GPUs.
-Configure with 'config-workflow-paperspace.json'.
-
-Input files = './models/n-synth/dataset'
+#### Actual Generation
 ```
-$ docker-compose up --build generate-paperspace
+$ docker-compose up --build generate-local
 ```
 
-Input files = './models/n-synth/dataset-test'
+## Cloud GPUs
+Runs on Paperspace GPUs configured with `config-workflow-paperspace.json`
+
+#### Actual Generation
 ```
 $ docker-compose up --build generate-test-paperspace
 ```
 
-Docker Errors
--------------
+#### Dev/Test
+```
+$ docker-compose up --build generate-paperspace
+```
 
-No space left on disk
+### How This Works
+Jobs are deployed throughout data pipeline process:
+* Run on Paperspace GPU
+* Run in configured Docker Container
+* Uses model checkpoint(s) that has been upload as .zip file to Paperspace 'storage' (common persistant storage)
+
+#### Configuring GPU
+`config-workflow-paperspace.json`
+
+#### Deploying updates to Docker Container
+Right now all jobs use the same container
+```
+$ ./models/nsynth/deploy-docker.sh
+```
+
+##### Deploying updated model checkpoint(s)
+Checkpoints are accessed through the Paperspace 'storage' directory, which can be accessed on Paperspace in the 'Notebooks' section under the container named 'COMMON STORAGE'. The 'storage' directory is common accross all jobs running on Paperspace.
+
+## Troubleshooting
+
+No space left on disk when invoking `docker-compose`
 ```
 $ docker image prune
 ```
 
-Docker Container
------------------
-Deployed as a job that runs in Paperspace. Job runs in a configurable docker container and uses configurable AI model checkpoint(s) that has been upload as .zip file to Paperspace 'storage' (common persistant storage)
+# Related Docs
+* [Paperspace API](https://paperspace.github.io/paperspace-node/)
+* [Paperspace GPU & CPU Types](https://support.paperspace.com/hc/en-us/articles/360007742114-Gradient-Instance-Types)
 
-1) Deploy Docker
-$ ./deploy-docker.sh
-
-2) Deploy Checkpoint
-Checkpoints are accessed through the Paperspace 'storage' directory, which can be accessed on Paperspace in the 'Notebooks' section under the container named 'COMMON STORAGE'. The 'storage' directory is common accross all jobs running on Paperspace.
-
-3) Deploy Job
-$ ./deploy-job.sh
-
-Paperspace
-----------
-CLI/API
-https://paperspace.github.io/paperspace-node/
-https://docs.paperspace.com/gradient/experiments/run-experiments
-
-GPU & CPU Types
-https://support.paperspace.com/hc/en-us/articles/360007742114-Gradient-Instance-Types
