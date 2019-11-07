@@ -1,6 +1,7 @@
 # Overview
-The whole sound generation data pipeline can be run either locally or in the cloud.<br />
-It is containerized in Docker and can be invoked with `docker-compose` commands below.<br />
+A sound generation data pipeline can be run either locally or in the cloud.<br />
+It can generate 2 or 4 dimension Sound Spaces with configurable resolution using 2 or 4 sounds input files<br />
+The whole pipeline is containerized in Docker and can be invoked with `docker-compose` commands below (no prereqs except Docker).<br />
 The test dataset & docker-compose test commands are best for faster development iterations.
 
 # Datasets
